@@ -34,6 +34,7 @@ interface PlatDTO {
     //description : "sauce tomate premium, origan, huile d'olive extra vierge, mozzarella",
 //}
 //]
+let panier : PlatDTO[] = [];
 
 async function chargerDonnées(): Promise<PlatDTO[]> { 
 const res = await fetch('http://localhost/EatSmart-Sherine/sherine-api-eatsmart/articles'); 
@@ -64,11 +65,12 @@ async function init(): Promise<void> {
         `;
     }
     const button = document.querySelectorAll<HTMLButtonElement>('.btn-order'); 
-
     button.forEach((btn, index) => { 
         btn.addEventListener('click', () => { 
             console.log(`Bouton n°${index} cliqué !`); 
-            console.log(`Plat = ${plat[index]}`)
+            console.log(`Plat = ${plat[index].nom}`)
+            panier.push(plat[index]);
+            console.log("État du panier :", panier);
         }); 
     }); 
     
