@@ -8,7 +8,7 @@ interface PlatDTO {
     description : string; 
 }
 
-//const plat: Plat[] =[
+//const plat: Plat[] =[ 
 //{
     //id : 1,
     //nom : "Anchois 23cm", 
@@ -47,41 +47,32 @@ async function init(): Promise<void> {
     const plat = await chargerDonnées();
     console.log(plat);
     if (app) {
-        app.innerHTML = `
-        <header>
-            <h1>EatSmart - Carte du restaurant</h1>
-        </header>
+    app.innerHTML = `
+    <div class="content-wrapper">
         <main class="menu-container">
+            ${plat.map((p) => `
+                <div class="card">
+                    <h3>${p.nom}</h3>
+                    <p>${p.description}</p>
+                    <p><strong>Prix : ${Number(p.prix).toFixed(2)} €</strong></p>
+                    <button class="btn-order">Ajouter</button>
+                </div>
+            `).join("")}
         </main>
 
-
-        <div class="menu-container">
-            ${plat
-                .map(
-                    (p) => `
-                    <div class="card">
-                        <h3>${p.nom}</h3>
-                        <p>${p.description}</p>
-                        <p><strong>Prix : ${Number(p.prix).toFixed(2)} €</strong></p>
-                        <button class="btn-order">Ajouter</button>
-                    </div>
-                `
-                )
-                .join("")}
-        </div>
         <aside class="cart-container">
             <h2>Votre Panier</h2>
             <div id="cart-items">
                 <p>Votre panier est vide</p>
             </div>
             <hr>
-                <div class="cart-total">
-                    <strong>Total : <span id="total-prix">0.00</span>€</strong>
-                </div>
+            <div class="cart-total">
+                <strong>Total : <span id="total-prix">0.00</span>€</strong>
+            </div>
         </aside>
     </div>
-        `;
-    }
+    `;
+}
     const button = document.querySelectorAll<HTMLButtonElement>('.btn-order'); 
     button.forEach((btn, index) => { 
         btn.addEventListener('click', () => { 
