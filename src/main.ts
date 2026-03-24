@@ -55,6 +55,7 @@ async function init(): Promise<void> {
                         <h3>${p.nom}</h3>
                         <p>${p.description}</p>
                         <p><strong>Prix : ${Number(p.prix).toFixed(2)} €</strong></p>
+                        <button class="btn-order">Ajouter</button>
                     </div>
                 `
                 )
