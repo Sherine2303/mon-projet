@@ -63,6 +63,15 @@ async function init(): Promise<void> {
         </div>
         `;
     }
+    const button = document.querySelectorAll<HTMLButtonElement>('.btn-order'); 
+
+    button.forEach((btn, index) => { 
+        btn.addEventListener('click', () => { 
+            console.log(`Bouton n°${index} cliqué !`); 
+            console.log(`Plat = ${plat[index]}`)
+        }); 
+    }); 
+    
 }
 
 init();
