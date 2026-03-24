@@ -41,6 +41,37 @@ const res = await fetch('http://localhost/EatSmart-Sherine/sherine-api-eatsmart/
 return await res.json();  
 } 
 
+function afficherPanier() {
+    const cartItems = document.querySelector("#cart-items");
+    const totalPrix = document.querySelector("#total-prix");
+
+    if (!cartItems || !totalPrix) return;
+
+    // Si le panier est vide
+    if (panier.length === 0) {
+        cartItems.innerHTML = "<p>Votre panier est vide</p>";
+        totalPrix.textContent = "0.00";
+        return;
+    }
+
+    // Sinon, on affiche les plats
+    cartItems.innerHTML = panier
+        .map(
+            (p) => `
+            <div class="cart-item">
+                <span>${p.nom}</span>
+                <span>${Number(p.prix).toFixed(2)} €</span>
+            </div>
+        `
+        )
+        .join("");
+
+    // Calcul du total
+    const total = panier.reduce((sum, p) => sum + Number(p.prix), 0);
+    totalPrix.textContent = total.toFixed(2);
+}
+
+
 async function init(): Promise<void> {
     const app = document.querySelector("#app");
     // On récupère les données du serveur
@@ -80,8 +111,12 @@ async function init(): Promise<void> {
             console.log(`Plat = ${plat[index].nom}`)
             panier.push(plat[index]);
             console.log("État du panier :", panier);
+            panier.push(plat[index]);
+            console.log("État du panier :", panier);
+            afficherPanier();
         }); 
     }); 
+    
     
 }
 
