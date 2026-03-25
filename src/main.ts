@@ -100,6 +100,7 @@ async function init(): Promise<void> {
             <div class="cart-total">
                 <strong>Total : <span id="total-prix">0.00</span>€</strong>
             </div>
+            <button class="btn-grt">Valider La Commande</button>
         </aside>
     </div>
     `;
@@ -116,7 +117,12 @@ async function init(): Promise<void> {
             afficherPanier();
         }); 
     }); 
-    
+    const buttonValider = document.querySelectorAll<HTMLButtonElement>('.btn-grt'); 
+    buttonValider.forEach((btn) => { 
+        btn.addEventListener('click', () => { 
+            console.log(`Boutton Valider. Commande cliqué`); 
+        }); 
+    });   
     
 }
 

@@ -31,7 +31,7 @@
 .menu-container {
   display: grid;
   /* Crée autant de colonnes de 250px que possible */
-  grid-template-columns: repeat(2, 250px);
+  grid-template-columns: repeat(3, 250px);
   gap: 20px 90px; /* Espace vertical et horizontal entre les cartes */
   flex: 0 0 auto;   /* Prend la majorité de l'espace par rapport au panier */
 }
@@ -45,6 +45,7 @@
 }
 .cart-container {
     flex: 1; /* Prend 1/4 de la largeur */
+    width: 500px;
     background: #f9f9f9;
     padding: 20px;
     border: 2px solid #2c3e50;
